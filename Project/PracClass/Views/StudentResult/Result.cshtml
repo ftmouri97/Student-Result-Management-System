@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "Result";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/angular/result.js"></script>
+
+<div class="col-sm-12 col-md-12" ng-app="resultApp" ng-controller="resultCtrl">
+
+    <div class="row" style="background-color:snow; margin-top:20px;border-radius:20px;padding:20px; border:double">
+
+        <div class="row">
+            <div class="col-sm-3">
+                <label>Course</label><br />
+                <select class="form-control" ng-model="Courseid" ng-change="CourseChage()" ng-options="p.CourseId as p.CourseName for p in CourseList">
+                    <option value="" selected="selected">Select Course</option>
+
+                </select>
+            </div>
+
+            <div class="col-sm-3">
+                <label>Batch</label><br />
+                <select class="form-control" ng-model="BatchId" ng-change="ChangeBatch()" ng-options="q.BatchId as q.BatchCode  for q in BatchList">
+                    <option value="" selected="selected">Select Batch</option>
+
+                </select>
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <div class="table-responsive" style="margin-top:20px; table-layout:fixed">
+        <table class="table table-bordered table-striped">
+
+            <thead>
+                <tr>
+                    <th>Serial</th>                   
+                    <th>Student Name</th>
+                    <th>CourseName</th>
+                    <th>Grade</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                   <tr ng-repeat="item in StudentResultList">
+                    <td>{{$index+1}}</td>
+                    <td>{{item.StudentName}}</td>
+                    <td>{{item.CourseName}}</td>                    
+                    <td>{{item.Grade}}</td>
+
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+

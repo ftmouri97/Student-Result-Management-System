@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SQLPROJECTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Batch">
+    <Key>
+      <PropertyRef Name="BatchId" />
+    </Key>
+    <Property Name="BatchId" Type="int" Nullable="false" />
+    <Property Name="BatchCode" Type="nvarchar" MaxLength="40" />
+    <Property Name="CourseId" Type="int" />
+    <Property Name="StartDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="BatchBaseStudent">
+    <Key>
+      <PropertyRef Name="BatchBaseStudentId" />
+    </Key>
+    <Property Name="BatchBaseStudentId" Type="int" Nullable="false" />
+    <Property Name="StudentId" Type="int" />
+    <Property Name="BatchId" Type="int" />
+  </EntityType>
+  <EntityType Name="CourseInformation">
+    <Key>
+      <PropertyRef Name="CourseId" />
+    </Key>
+    <Property Name="CourseId" Type="int" Nullable="false" />
+    <Property Name="CourseName" Type="nvarchar" MaxLength="40" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="int" Nullable="false" />
+    <Property Name="RoleName" Type="nvarchar" MaxLength="40" />
+  </EntityType>
+  <EntityType Name="sales">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TotalSales" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="SoldDate" Type="varchar" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="StudentGrade">
+    <Key>
+      <PropertyRef Name="GradeId" />
+    </Key>
+    <Property Name="GradeId" Type="int" Nullable="false" />
+    <Property Name="NumberFrom" Type="float" />
+    <Property Name="NumberTo" Type="float" />
+    <Property Name="Grade" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="StudentInformation">
+    <Key>
+      <PropertyRef Name="StudentId" />
+    </Key>
+    <Property Name="StudentId" Type="int" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="40" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="40" />
+    <Property Name="FathersName" Type="nvarchar" MaxLength="40" />
+    <Property Name="MothersName" Type="nvarchar" MaxLength="40" />
+    <Property Name="Address" Type="nvarchar" MaxLength="300" />
+    <Property Name="DateOfBirth" Type="datetime" />
+    <Property Name="Gender" Type="nvarchar" MaxLength="10" />
+    <Property Name="Religion" Type="nvarchar" MaxLength="10" />
+    <Property Name="Mobile" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="StudentResult">
+    <Key>
+      <PropertyRef Name="ResultId" />
+    </Key>
+    <Property Name="ResultId" Type="int" Nullable="false" />
+    <Property Name="BatchBaseStudentId" Type="int" />
+    <Property Name="SubjectId" Type="int" />
+    <Property Name="Number" Type="float" />
+  </EntityType>
+  <EntityType Name="Subject">
+    <Key>
+      <PropertyRef Name="SubjectId" />
+    </Key>
+    <Property Name="SubjectId" Type="int" Nullable="false" />
+    <Property Name="SubjectName" Type="nvarchar" MaxLength="40" />
+    <Property Name="CourseId" Type="int" />
+  </EntityType>
+  <EntityType Name="TriggerResult">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TotalSalesOfTheDay" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="SoldDate" Type="varchar" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="UserInfo">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="40" />
+    <Property Name="Password" Type="nvarchar" MaxLength="40" />
+  </EntityType>
+  <EntityType Name="UserRole">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Batch__CourseId__173876EA">
+    <End Role="CourseInformation" Type="Self.CourseInformation" Multiplicity="0..1" />
+    <End Role="Batch" Type="Self.Batch" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CourseInformation">
+        <PropertyRef Name="CourseId" />
+      </Principal>
+      <Dependent Role="Batch">
+        <PropertyRef Name="CourseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BatchBase__Batch__1B0907CE">
+    <End Role="Batch" Type="Self.Batch" Multiplicity="0..1" />
+    <End Role="BatchBaseStudent" Type="Self.BatchBaseStudent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Batch">
+        <PropertyRef Name="BatchId" />
+      </Principal>
+      <Dependent Role="BatchBaseStudent">
+        <PropertyRef Name="BatchId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BatchBase__Stude__3F115E1A">
+    <End Role="StudentInformation" Type="Self.StudentInformation" Multiplicity="0..1" />
+    <End Role="BatchBaseStudent" Type="Self.BatchBaseStudent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StudentInformation">
+        <PropertyRef Name="StudentId" />
+      </Principal>
+      <Dependent Role="BatchBaseStudent">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__StudentRe__Batch__1ED998B2">
+    <End Role="BatchBaseStudent" Type="Self.BatchBaseStudent" Multiplicity="0..1" />
+    <End Role="StudentResult" Type="Self.StudentResult" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BatchBaseStudent">
+        <PropertyRef Name="BatchBaseStudentId" />
+      </Principal>
+      <Dependent Role="StudentResult">
+        <PropertyRef Name="BatchBaseStudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__StudentRe__Batch__73BA3083">
+    <End Role="BatchBaseStudent" Type="Self.BatchBaseStudent" Multiplicity="0..1" />
+    <End Role="StudentResult" Type="Self.StudentResult" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BatchBaseStudent">
+        <PropertyRef Name="BatchBaseStudentId" />
+      </Principal>
+      <Dependent Role="StudentResult">
+        <PropertyRef Name="BatchBaseStudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__StudentRe__Subje__1DE57479">
+    <End Role="Subject" Type="Self.Subject" Multiplicity="0..1" />
+    <End Role="StudentResult" Type="Self.StudentResult" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subject">
+        <PropertyRef Name="SubjectId" />
+      </Principal>
+      <Dependent Role="StudentResult">
+        <PropertyRef Name="SubjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Subject__CourseI__145C0A3F">
+    <End Role="CourseInformation" Type="Self.CourseInformation" Multiplicity="0..1" />
+    <End Role="Subject" Type="Self.Subject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CourseInformation">
+        <PropertyRef Name="CourseId" />
+      </Principal>
+      <Dependent Role="Subject">
+        <PropertyRef Name="CourseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SQLPROJECTModelStoreContainer">
+    <EntitySet Name="Batch" EntityType="Self.Batch" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BatchBaseStudent" EntityType="Self.BatchBaseStudent" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CourseInformation" EntityType="Self.CourseInformation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sales" EntityType="Self.sales" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StudentGrade" EntityType="Self.StudentGrade" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StudentInformation" EntityType="Self.StudentInformation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StudentResult" EntityType="Self.StudentResult" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Subject" EntityType="Self.Subject" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TriggerResult" EntityType="Self.TriggerResult" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserInfo" EntityType="Self.UserInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Batch__CourseId__173876EA" Association="Self.FK__Batch__CourseId__173876EA">
+      <End Role="CourseInformation" EntitySet="CourseInformation" />
+      <End Role="Batch" EntitySet="Batch" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BatchBase__Batch__1B0907CE" Association="Self.FK__BatchBase__Batch__1B0907CE">
+      <End Role="Batch" EntitySet="Batch" />
+      <End Role="BatchBaseStudent" EntitySet="BatchBaseStudent" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BatchBase__Stude__3F115E1A" Association="Self.FK__BatchBase__Stude__3F115E1A">
+      <End Role="StudentInformation" EntitySet="StudentInformation" />
+      <End Role="BatchBaseStudent" EntitySet="BatchBaseStudent" />
+    </AssociationSet>
+    <AssociationSet Name="FK__StudentRe__Batch__1ED998B2" Association="Self.FK__StudentRe__Batch__1ED998B2">
+      <End Role="BatchBaseStudent" EntitySet="BatchBaseStudent" />
+      <End Role="StudentResult" EntitySet="StudentResult" />
+    </AssociationSet>
+    <AssociationSet Name="FK__StudentRe__Batch__73BA3083" Association="Self.FK__StudentRe__Batch__73BA3083">
+      <End Role="BatchBaseStudent" EntitySet="BatchBaseStudent" />
+      <End Role="StudentResult" EntitySet="StudentResult" />
+    </AssociationSet>
+    <AssociationSet Name="FK__StudentRe__Subje__1DE57479" Association="Self.FK__StudentRe__Subje__1DE57479">
+      <End Role="Subject" EntitySet="Subject" />
+      <End Role="StudentResult" EntitySet="StudentResult" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Subject__CourseI__145C0A3F" Association="Self.FK__Subject__CourseI__145C0A3F">
+      <End Role="CourseInformation" EntitySet="CourseInformation" />
+      <End Role="Subject" EntitySet="Subject" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

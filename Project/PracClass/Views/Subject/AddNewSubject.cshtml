@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewBag.Title = "AddNewSubject";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/angular/Subject.js"></script>
+
+<div class="col-sm-12 col-md-12" ng-app="abcApp" ng-controller="abcCtrl">
+
+
+    <div class="col-sm-12">
+        <div class="row" style="background-color:snow; margin-top:20px;border-radius:20px;padding:5px;border:double">
+            <div class="col-sm-6">
+                <label>Subject ID</label><br />
+                <input ng-model="SubjectId" class="form-control" placeholder="Subject ID "/>
+            </div>
+            <div class="col-sm-6">
+                <label>Subject Name</label><br />
+                <input ng-model="SubjectName" class="form-control" placeholder="Subject Name "/>
+            </div>
+            <div class="col-sm-6">
+                <label>Course ID</label><br />
+                <input ng-model="CourseId" class="form-control" placeholder="Course ID "/>
+            </div>
+            
+        </div>
+
+
+    </div>
+
+    <div class="row text-center" style="margin-top:10px;">
+        <div class="col-sm-10">
+            <input type="button" ng-show="Addbtnshow" class="btn btn-info" ng-click="AddSubject()" value="Add Student Result" />
+            <input type="button" ng-show="updatebtnshow" class="btn btn-info" ng-click="UpdateSubject()" value="Update Student Result" />
+        </div>
+    </div>
+
+    <div class="table-responsive" style="margin-top:20px; table-layout:fixed">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Serial</th>
+                    <th>Subject ID</th>
+                    <th>Subject Name</th>
+                    <th>Course ID</th>
+@if (Request.IsAuthenticated && User.IsInRole("Admin"))
+{
+                    <th>Action</th>
+}
+
+                </tr>
+            </thead>
+            <tbody>
+              
+                <tr ng-repeat="item in SubjectList">
+                    <td>{{$index+1}}</td>
+                    <td>{{item.SubjectId}}</td>
+                    <td>{{item.SubjectName}}</td>
+                    <td>{{item.CourseId}}</td>
+                    
+@if (Request.IsAuthenticated && User.IsInRole("Admin"))
+{
+                    <td>
+                        <button class="btn btn-sm btn-primary" ng-click="StudentEdit(item)">Edit</button>||
+                        <button class="btn btn-sm btn-danger" ng-click="StudentDelete(item)">Delete</button>
+                    </td>
+}
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+

@@ -1,0 +1,121 @@
+﻿
+@{
+    ViewBag.Title = "AddNewStudent";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/angular/StudentInformation.js"></script>
+
+<div class="col-sm-12 col-md-12" ng-app="abcApp" ng-controller="abcCtrl">
+
+    <div class="row" style="background-color:snow; margin-top:20px;border-radius:20px;padding:5px; border:double">
+       
+         <div class="col-sm-12">
+            <div class="row">
+                <div class="col-sm-3">
+                    <label>Student ID</label><br />
+                    <input ng-model="StudentId" class="form-control" placeholder="Student Id" />
+                </div>
+                <div class="col-sm-3">
+                    <label>First Name</label><br />
+                    <input ng-model="FirstName" class="form-control" placeholder="First Name"/>
+                </div>
+                <div class="col-sm-3">
+                    <label>Last Name</label><br />
+                    <input ng-model="LastName" class="form-control" placeholder="Last Name" />
+                </div>
+                <div class="col-sm-3">
+                    <label>Fathers Name</label><br />
+                    <input ng-model="FathersName" class="form-control" placeholder="Father's Name" />
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-sm-3">
+                    <label>Mothers Name</label><br />
+                    <input ng-model="MothersName" class="form-control" placeholder="Mother's Name"/>
+                </div>
+                <div class="col-sm-3">
+                    <label>Address</label><br />
+                    <input ng-model="Address" class="form-control" placeholder="Address"/>
+                </div>
+                <div class="col-sm-3">
+                    <label>Date Of Birth</label><br />
+                    <input ng-model="DateOfBirth" class="form-control" placeholder="Date Of Birth"/>
+                </div>
+                <div class="col-sm-3">
+                    <label>Gender</label><br />
+                    <select class="form-control" ng-model="Gender">
+                        <option value="" selected="selected">Select Gender</option>
+                        <option value="Male" >Male</option> 
+                        <option value="Female">Female</option>
+                        <option value="Others" >Others</option>
+                    </select>
+                </div>
+            </div>
+           
+            <div class="row">
+                <div class="col-sm-3">
+                    <label>Religion</label><br />
+                    <select class="form-control" ng-model="Religion">
+                        <option value="" selected="selected">Select Religion</option>
+                        <option value="Islam">Islam</option>
+                        <option value="Hindu">Hindu</option>
+                        <option value="Buddist">Buddist</option>
+                        <option value="Christian">Christian</option>
+                        <option value="Others">Others</option>
+                    </select>
+                </div>
+                <div class="col-sm-3">
+                    <label>Mobile No</label><br />
+                    <input ng-model="Mobile" class="form-control" placeholder="Mobile No"/>
+                </div>
+            </div>
+        </div>
+      
+        <div class="row text-center" style="margin-top:10px;">
+            <div class="col-sm-12">
+                <input type="button" ng-show="Addbtnshow" class="btn btn-info" ng-click="AddStudent()" value="Add Student" />
+                <input type="button" ng-show="updatebtnshow" class="btn btn-info" ng-click="UpdateStudent()" value="Update Student" />
+            </div>
+        </div>
+
+    </div>
+
+    <div class="table-responsive" style="margin-top:20px; table-layout:fixed">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Serial</th>
+                    <th>Student ID</th>
+                    <th>Name</th>
+                    <th>Fathers Name</th>
+                    <th>Mothers Name</th>
+                    <th>Address</th>
+                    <th>Date Of Birth</th>
+                    <th>Gender</th>
+                    <th>Religion</th>
+                    <th>Mobile</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+           <tbody>
+                <tr ng-repeat="item in StudentInformationList">
+                    <td>{{$index+1}}</td>
+                    <td>{{item.StudentId}}</td>
+                    <td>{{item.FirstName}}&nbsp;{{item.LastName}}</td>
+                    <td>{{item.FathersName}}</td>
+                    <td>{{item.MothersName}}</td>
+                    <td>{{item.Address}}</td>
+                    <td>{{item.DateOfBirth | date:'dd MMM, yyyy'}}</td>
+                    <td>{{item.Gender}}</td>
+                    <td>{{item.Religion}}</td>
+                    <td>{{item.Mobile}}</td>
+                    <td>
+                        <button class="btn btn-sm btn-primary" ng-click="StudentEdit(item)">Edit</button>||
+                        <button class="btn btn-sm btn-danger" ng-click="StudentDelete(item)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "AddNewCourse";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/angular/CourseInformation.js"></script>
+<div class="col-sm-12 col-md-12" ng-app="abcApp" ng-controller="abcCtrl">
+    <div class="col-sm-12">
+        <div class="row" style="background-color:snow; margin-top:20px;border-radius:20px;padding:5px;border:double">
+            <div class="col-sm-6">
+                <label>Course ID</label><br />
+                <input ng-model="CourseId" class="form-control" placeholder="Course Id"/>
+            </div>
+            <div class="col-sm-6">
+                <label>Course Name</label><br />
+                <input ng-model="CourseName" class="form-control" placeholder="Course Name" />
+            </div>
+        </div>
+    </div>
+    <div class="row text-center" style="margin-top:10px;">
+        <div class="col-sm-10">
+            <input type="button" ng-show="Addbtnshow" class="btn btn-info" ng-click="AddCourse()" value="Add Course" />
+            <input type="button" ng-show="updatebtnshow" class="btn btn-info" ng-click="UpdateCourse()" value="Update Course" />
+        </div>
+    </div>
+    <div class="col-sm-12" ng-show="WhenAddbtnClick">
+
+    </div>
+    <div class="table-responsive" style="margin-top:20px; table-layout:fixed">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Serial</th>
+                    <th>Course ID</th>
+                    <th>Course Name</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+              
+                <tr ng-repeat="item in CourseInformationList">
+                    <td>{{$index+1}}</td>
+                    <td>{{item.CourseId}}</td>
+                    <td>{{item.CourseName}}</td>
+                    <td>
+                        <button class="btn btn-sm btn-primary" ng-click="StudentEdit(item)">Edit</button>||
+                        <button class="btn btn-sm btn-danger" ng-click="StudentDelete(item)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

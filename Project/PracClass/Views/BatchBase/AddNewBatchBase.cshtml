@@ -1,0 +1,88 @@
+﻿
+@{
+    ViewBag.Title = "AddNewBatchBase";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/angular/BatchBase.js"></script>
+
+<div class="col-sm-12 col-md-12" ng-app="abcApp" ng-controller="abcCtrl">
+
+
+
+    <div class="row" style="background-color:snow; margin-top:20px;border-radius:20px;padding:5px; border:double">
+
+
+
+        <div class="col-sm-12">
+            <div class="row">
+                <div class="col-sm-3">
+                    <label>Batch Base Student ID</label><br />
+                    <input ng-model="BatchBaseStudentId" class="form-control" placeholder="Batch Base Student ID "/>
+                </div>
+                <div class="col-sm-3">
+                    <label>Student Name</label><br />
+                    <select class="form-control" ng-model="StudentId" ng-options="q.StudentId as q.StudentName  for q in StudentList">
+                        <option value="" selected="selected">Select Student</option>
+
+                    </select>
+                </div>
+
+                <div class="col-sm-3">
+                    <label>Course</label><br />
+                    <select class="form-control" ng-model="Courseid" ng-change="CourseChage()" ng-options="p.CourseId as p.CourseName for p in CourseList">
+                        <option value="" selected="selected">Select Course</option>
+
+                    </select>
+                </div>
+
+                <div class="col-sm-3">
+                    <label>Batch</label><br />
+                    <select class="form-control" ng-model="BatchId" ng-change="ChangeBatch()" ng-options="q.BatchId as q.BatchCode  for q in BatchList">
+                        <option value="" selected="selected">Select Batch</option>
+
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="row text-center" style="margin-top:10px;">
+                <div class="col-sm-12">
+                    <input type="button" ng-show="Addbtnshow" class="btn btn-info" ng-click="AddBatchBase()" value="Add BatchBase" />
+                    <input type="button" ng-show="updatebtnshow" class="btn btn-info" ng-click="UpdateBatchBase()" value="Update BatchBase" />
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="table-responsive" style="margin-top:20px; table-layout:fixed">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Serial</th>
+                    <th>BatchBaseStudentId</th>
+                    <th>Student Name</th>
+                    <th>Batch</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+               
+                <tr ng-repeat="item in BatchBaseList">
+                    <td>{{$index+1}}</td>
+                    <td>{{item.BatchBaseStudentId}}</td>
+                    <td>{{item.FirstName}} {{item.LastName}}</td>
+                    <td>{{item.BatchCode}}</td>
+
+
+                    <td>
+                        <button class="btn btn-sm btn-primary" ng-click="StudentEdit(item)">Edit</button>||
+                        <button class="btn btn-sm btn-danger" ng-click="StudentDelete(item)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

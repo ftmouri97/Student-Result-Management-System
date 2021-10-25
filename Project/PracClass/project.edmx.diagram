@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="20aaa27d7c13496b9b7e3bd8b5ff2dbc" Name="Diagram1" ZoomLevel="72">
+        <EntityTypeShape EntityType="SQLPROJECTModel.Batch" Width="1.5" PointX="4.875" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SQLPROJECTModel.CourseInformation" Width="1.5" PointX="1.5" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SQLPROJECTModel.Role" Width="1.5" PointX="8" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SQLPROJECTModel.StudentGrade" Width="1.5" PointX="10" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SQLPROJECTModel.StudentInformation" Width="2.125" PointX="4" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SQLPROJECTModel.StudentResult" Width="2.375" PointX="12.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="SQLPROJECTModel.Subject" Width="1.5" PointX="1.5" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SQLPROJECTModel.UserInfo" Width="1.5" PointX="7.5" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SQLPROJECTModel.UserRole" Width="1.5" PointX="9.875" PointY="2.875" IsExpanded="true" />
+        <AssociationConnector Association="SQLPROJECTModel.FK__Batch__CourseId__173876EA" ManuallyRouted="false" />
+        <AssociationConnector Association="SQLPROJECTModel.FK__Subject__CourseI__145C0A3F" ManuallyRouted="false" />
+        <AssociationConnector Association="SQLPROJECTModel.FK__StudentRe__Subje__1DE57479" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SQLPROJECTModel.BatchBaseStudent" Width="2.25" PointX="15.125" PointY="4.625" />
+        <AssociationConnector Association="SQLPROJECTModel.FK__BatchBase__Batch__1B0907CE" />
+        <AssociationConnector Association="SQLPROJECTModel.FK__BatchBase__Stude__3F115E1A" />
+        <AssociationConnector Association="SQLPROJECTModel.FK__StudentRe__Batch__1ED998B2" />
+        <AssociationConnector Association="SQLPROJECTModel.FK__StudentRe__Batch__73BA3083" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
